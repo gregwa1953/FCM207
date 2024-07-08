@@ -23,7 +23,6 @@ import calc1
 _debug = False  # False to eliminate debug printing from callback functions.
 divsym = "÷"
 
-
 def main(*args):
     """Main entry point for the application."""
     global root
@@ -36,7 +35,6 @@ def main(*args):
     startup()
     root.mainloop()
 
-
 def startup():
     # Clear the display label widget
     _w1.Display.set("")
@@ -44,7 +42,6 @@ def startup():
     dbuf = ""
     set_button_fonts()
     _top1.title("Simple Calculator")
-
 
 def set_button_fonts():
     """
@@ -57,7 +54,6 @@ def set_button_fonts():
     sty.configure("TButton", font=myFont, background="cornsilk4")
     # Update the entire Toplevel (just in case)
     _top1.update()
-
 
 def on_numKey(*args):
     """
@@ -73,7 +69,6 @@ def on_numKey(*args):
     global dbuf
     dbuf = dbuf + str(args[0])
     _w1.Display.set(dbuf)
-
 
 def on_funcKey(*args):
     """
@@ -109,6 +104,9 @@ def on_funcKey(*args):
             _top1.update()
             dbuf = ""
 
-
 if __name__ == "__main__":
     calc1.start_up()
+
+
+
+
