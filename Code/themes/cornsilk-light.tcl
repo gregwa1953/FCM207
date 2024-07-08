@@ -8,35 +8,23 @@
 # Copyright © 2023,2024 by G.D. Walters  <thedesignatedgeek@gmail.com>
 #
 #====================================================
-# Version 0.2.6
-# May 21, 2024
+# Version 0.1.20
+# December 12, 2023
+#====================================================
 #====================================================
 # Change log
 #----------------------------------------------------
 # 11/21/2023 - Initial creation
 # 12/12/2023 - modified the TNotebook.tab style
-# 02/28/2023 - Renamed to page-cornsilkdark
-# 03/01/2024 - Added font styles to multiple widget classes
-#                Tbutton - bold.TButton, italic.TButton, bolditalic.TButton
-#                Toolbutton - bold.Toolbutton, italic.Toolbutton, bolditalic.Toolbutton
-#                TCheckbutton - bold.TCheckbutton
-#                TRadiobutton - bold.TRadiobutton
-#                TNotebook - bold.TNotebook.Tab
-#                TLabelframe - bold.TLabeframe.Label
-#                TMenubutton - bold.TMenubutton, italic.TMenubutton, bolditalic.TMenubutton
-#            - Modified TLabelframe labelmargins to {12 0 0 4} to provide a little
-#                space before the text.
-# 03/19/2024 - 0.2.4 - Support for TMenubutton.
-# 05/21/2024 - 0.2.6 - Rolled version on all my theme files.
 #----------------------------------------------------
 
 package require Tk 8.6
 
 
 
-namespace eval ttk::theme::page-cornsilklight {
-    variable version 0.2.6
-    package provide ttk::theme::page-cornsilklight $version
+namespace eval ttk::theme::cornsilk-light {
+    variable version 0.1.20
+    package provide ttk::theme::cornsilk-light $version
     variable colors
     array set colors {
         -disabledfg     gray54
@@ -80,7 +68,7 @@ namespace eval ttk::theme::page-cornsilklight {
     #           -focuscolor aquamarine2 \
 
     # Settings
-    ttk::style theme create page-cornsilklight -parent clam -settings {
+    ttk::style theme create cornsilk-light -parent clam -settings {
 
         ttk::style configure "." \
             -background $colors(-bgcolor) \
@@ -119,24 +107,12 @@ namespace eval ttk::theme::page-cornsilklight {
         }
 
         # Load the images for TCheckbutton and TRadiobutton
-        load_images [file join [file dirname [info script]] page-cornsilk]
+        load_images [file join [file dirname [info script]] cornsilk]
 
 
         option add *TkFDialog*foreground black
         option add *TkChooseDir*foreground black
 
-        #font create boldFont -family TkDefaultFont -size 11 -weight bold -slant roman
-        #font create italicFont -family TkDefaultFont -size 11 -weight normal -slant italic
-        #font create boldItalicFont -family TkDefaultFont -size 11 -weight bold -slant italic
-        try {
-            font create boldFont -family TkDefaultFont -size 11 -weight bold -slant roman
-            font create italicFont -family TkDefaultFont -size 11 -weight normal -slant italic
-            font create boldItalicFont -family TkDefaultFont -size 11 -weight bold -slant italic
-        } on error {msg} {
-            # skip
-            #puts {msg}
-            #puts "Skipping font create"
-            }
         # -selectbackground [list  !focus "#847d73"]
         # --------------------------------------------------
         # TButton
@@ -157,10 +133,6 @@ namespace eval ttk::theme::page-cornsilklight {
                 -bordercolor [list alternate "#000000"] \
                 ;
 
-        ttk::style configure bold.TButton -font boldFont -padding "1 5 1 5"
-        ttk::style configure italic.TButton -font italicFont -padding "1 5 1 5"
-        ttk::style configure bolditalic.TButton -font boldItalicFont -padding "1 5 1 5"
-
         # --------------------------------------------------
         # Toolbutton (special style for TButton)
         # --------------------------------------------------
@@ -180,11 +152,6 @@ namespace eval ttk::theme::page-cornsilklight {
                 -lightcolor [list pressed $colors(-darker)] \
                 -darkcolor [list pressed $colors(-darker)] \
             ;
-
-        ttk::style configure bold.Toolbutton -font boldFont
-        ttk::style configure italic.Toolbutton -font italicFont
-        ttk::style configure bolditalic.Toolbutton -font boldItalicFont
-
         # --------------------------------------------------
         # TCheckbutton
         # --------------------------------------------------
@@ -217,8 +184,6 @@ namespace eval ttk::theme::page-cornsilklight {
                 {pressed !selected} $I(chk24x16) \
                 active $I(unchk24x16) \
             ] -width 26 -sticky w
-
-        ttk::style configure bold.TCheckbutton -font boldFont
 
         # --------------------------------------------------
         # TRadiobutton
@@ -253,24 +218,11 @@ namespace eval ttk::theme::page-cornsilklight {
                 active $I(RadioUnSelected24x16) \
             ] -width 26 -sticky w
 
-        ttk::style configure bold.TRadiobutton -font boldFont
-
         # --------------------------------------------------
         # TMenubutton  (for future compatibility)
         # --------------------------------------------------
         ttk::style configure TMenubutton \
             -width -11 -padding 5 -relief raised
-        ttk::style map TButton \
-                -background [list pressed $colors(-darker) \
-                active $colors(-activebgcolor)] \
-                -lightcolor [list pressed $colors(-darker)] \
-                -darkcolor [list pressed $colors(-darker)] \
-                -bordercolor [list alternate "#000000"] \
-                ;
-
-        ttk::style configure bold.TMenubutton -font boldFont -padding "1 5 1 5"
-        ttk::style configure italic.TMenubutton -font italicFont -padding "1 5 1 5"
-        ttk::style configure bolditalic.TMenubutton -font boldItalicFont -padding "1 5 1 5"
 
         # --------------------------------------------------
         # TEntry
@@ -363,9 +315,8 @@ namespace eval ttk::theme::page-cornsilklight {
         ttk::style configure Tab_se.TNotebook -tabposition "se"
         ttk::style configure Tab_wn.TNotebook -tabposition "wn"
         ttk::style configure Tab_w.TNotebook -tabposition "w"
-        ttk::style configure Tab_ws.TNotebook -tabposition "ws"
+        ttk::style configure Tab_ws.TNotebook -tabposition "ws"            
 
-        ttk::style configure bold.TNotebook.Tab -font boldFont
 
         # --------------------------------------------------
         # Treeview:
@@ -395,13 +346,11 @@ namespace eval ttk::theme::page-cornsilklight {
         # --------------------------------------------------
         ttk::style configure TLabelframe \
             -background $colors(-bgcolor) -bordercolor $colors(-frame) \
-            -labeloutside false -labelmargins {12 0 0 4} -padding {5 0} \
+            -labeloutside false -labelmargins {0 0 0 4} \
             -borderwidth 3 -relief groove
         ttk::style configure TLabelframe.Label \
             -background $colors(-bgcolor)\
             -foreground $colors(-fgcolor) -padding {12 6}
-
-        ttk::style configure bold.TLabelframe.Label -font boldFont
 
         # --------------------------------------------------
         # TProgressbar

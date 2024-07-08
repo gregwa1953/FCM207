@@ -28,10 +28,10 @@ def _style_code():
     global _style_code_ran
     if _style_code_ran: return        
     try: calc1_support.root.tk.call('source',
-                os.path.join(_location, 'themes', 'page-cornsilklight.tcl'))
+                os.path.join(_location, 'themes', 'cornsilk-light.tcl'))
     except: pass
     style = ttk.Style()
-    style.theme_use('page-cornsilklight')
+    style.theme_use('cornsilk-light')
     style.configure('.', font = "-family {DejaVu Sans} -size 10")
     _style_code_ran = 1
 
